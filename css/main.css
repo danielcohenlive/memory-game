@@ -24,7 +24,7 @@ header .logo{
     width: 515px;
     margin: 0 auto;
 }
-#memory-game:after{
+#memory-game #tiles:after{
     content: "";
     height: 0px;
     width: 0px;
@@ -94,4 +94,30 @@ header .logo{
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     transform: rotateY(180deg);
+}
+
+#reset{
+    text-align: center;
+    margin: 20px 0;
+}
+#reset button{
+    margin: 0 auto;
+    padding: 10px 30px;
+    background: #ed6b9d; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ed6b9d 0%, #ed4a89 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ed6b9d), color-stop(100%,#ed4a89)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ed6b9d 0%,#ed4a89 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ed6b9d 0%,#ed4a89 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ed6b9d 0%,#ed4a89 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ed6b9d 0%,#ed4a89 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed6b9d', endColorstr='#ed4a89',GradientType=0 ); /* IE6-9 */
+    border: 1px #ed4a89 solid;
+    border-radius: 3px;
+    outline: none;
+    font-family: 'Maven Pro', Arial, sans-serif;
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #fff;
+    text-shadow: 0 -1px 0 #ed4a89, 0 1px 0 #ee82ab;
+    
 }
