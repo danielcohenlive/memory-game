@@ -116,7 +116,7 @@ MemoryModel.prototype = {
  */
 var TileController = function(data){
 	this.id = data.id;
-	this.letter = data.letter;
+	this.image = data.image;
 	this.$el;
 
 	this.init();
@@ -147,8 +147,8 @@ TileController.prototype = {
 	 * @return {$Object} A jQuery object of the dom element
 	 */
 	buildTile: function(){
-		var tileFront = '<div class="front"></div>',
-			tileBack = '<div class="back">'+ this.letter +'</div>',
+		var tileFront = '<div class="front"><img src="images/crema-front.png" /></div>',
+			tileBack = '<div class="back"><img src="'+ this.image +'" /></div>',
 			tile = '<div class="tile">' + tileFront + tileBack + '</div>';
 		this.$el = $(tile);
 	},
@@ -184,7 +184,7 @@ TileController.prototype = {
 
 		function hide(){
 			self.$el.addClass("matched");
-			//self.$el.removeClass("active");
+			self.$el.removeClass("active");
 		};
 
 		if(this.$el.hasClass("active")) setTimeout(hide, 1000);
@@ -299,52 +299,46 @@ var memoryData = {
 	tiles: [
 		{
 			"id": "001",
-			"letter": "A"
+			"image": "images/crema-black-white.jpg"
 		},
 		{
 			"id": "002",
-			"letter": "B"
+			"image": "images/crema-blue-cream.jpg"
 		},
 		{
 			"id": "003",
-			"letter": "C"
+			"image": "images/crema-brown-cream.jpg"
 		},
 		{
 			"id": "004",
-			"letter": "D"
+			"image": "images/crema-green-black.jpg"
 		},
 		{
 			"id": "005",
-			"letter": "E"
+			"image": "images/crema-pink-brown.jpg"
 		},
 		{
 			"id": "006",
-			"letter": "F"
+			"image": "images/crema-red-white.jpg"
 		},
 		{
 			"id": "007",
-			"letter": "G"
+			"image": "images/crema-white-black.jpg"
 		},
 		{
 			"id": "008",
-			"letter": "H"
+			"image": "images/crema-white-black2.jpg"
 		},
 		{
 			"id": "009",
-			"letter": "I"
+			"image": "images/crema-white-brown.jpg"
 		},
 		{
 			"id": "010",
-			"letter": "J"
-		},
-		{
-			"id": "011",
-			"letter": "K"
-		},
-		{
-			"id": "012",
-			"letter": "L"
+			"image": "images/crema-yellow-pink.jpg"
 		}
+
+
 	]
 }
 
