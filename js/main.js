@@ -16,9 +16,10 @@ MemoryBoardController.prototype = {
 	},
 	subscribe: function(){
 		Events.broadcaster.on(Events.tileTurnedOver, $.proxy(this.compareTiles, this));
+		Events.broadcaster.on(Events.resetGame, $.proxy(this.resetBoard, this));
 	},
 	events: function(){
-		$("#reset", this.$el).on("click", $.proxy(this.resetBoard, this));
+		$("#reset", this.$el).on("click", $.proxy(this.reset, this));
 	},
 	render: function(){
 		//Loop through model to create board
@@ -45,13 +46,17 @@ MemoryBoardController.prototype = {
 			this.activeTiles.length = 0;
 		}
 	},
+	reset: function(){
+		//Trigger event that the game has been reset
+		Events.broadcaster.trigger(Events.resetGame);
+	},
 	resetBoard: function(){
+		//Reset activeTiles storage
+		this.activeTiles.length = 0;
 		//Empty out tiles container
 		$("#tiles", this.$el).empty();
 		//Rerender tiles
 		this.render();
-		//Trigger event that the game has been reset
-		Events.broadcaster.trigger(Events.resetGame);
 	}
 };
 
@@ -240,21 +245,41 @@ var ScoreBoardController = function(view, model){
 ScoreBoardController.prototype = {
 	init: function(){
 		this.subscribe();
+		this.events();
 	},
 	subscribe: function(){
 		Events.broadcaster.on(Events.attemp, $.proxy(this.updateAttemps, this));
 		Events.broadcaster.on(Events.correctMatch, $.proxy(this.updateCorrect, this));
 		Events.broadcaster.on(Events.resetGame, $.proxy(this.reset, this));
 	},
+	events: function(){
+		var self = this;
+
+		$(".reset-button", this.$el).on("click", function(){
+			self.resetGame();
+			self.closeScoreBoard();
+		}); 
+	},
 	render: function(){
 		var score = this.model.get('score');
-		$("#score", this.$el).html('Congratulations! Your score is ' + score);
+		$("#score", this.$el).html(score);
+	},
+	openScoreBoard: function(){
+		var self = this;
+		$("body").addClass("modal-open");
+		self.$el.fadeIn(500);
+	},
+	closeScoreBoard: function(){
+		var self = this;
+		$("body").removeClass("modal-open");
+		self.$el.fadeOut(500);
 	},
 	updateAttemps: function(){
 		console.log("updateAttemps");
 		var attemps = this.model.get('attemps');
 		this.model.set('attemps', attemps+1);
 
+		//Check to see if all of the tiles have been matched
 		if(this.model.get('totalOutcome') === this.model.get('correct')){
 			this.updateScore();
 		}
@@ -274,9 +299,14 @@ ScoreBoardController.prototype = {
 		this.model.set('score', efficiency);
 		//Render scoreboard
 		this.render();
+		this.openScoreBoard();
 	},
 	reset: function(){
 		this.model.setDefaults();
+	},
+	resetGame: function(){
+		//Trigger event that the game has been reset
+		Events.broadcaster.trigger(Events.resetGame);
 	}
 }
 
@@ -337,8 +367,6 @@ var memoryData = {
 			"id": "010",
 			"image": "images/crema-yellow-pink.jpg"
 		}
-
-
 	]
 }
 

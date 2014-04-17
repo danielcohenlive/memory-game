@@ -14,6 +14,7 @@
         
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,500' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/libs/modernizr-2.6.2.min.js"></script>
     </head>
@@ -23,18 +24,27 @@
         <![endif]-->
         <header>
             <h1 class="logo"></h1>
+
+            <hgroup>
+                <h2>Welcome to Creamory memory game! Put yourself to the test by seeing how fast and accurately you can flip over and match the hidden creamsicles in the tiles below.</h2>
+            </hgroup>
         </header>
 
         <div id="memory-game">
             <div id="tiles"></div>
             <div id="reset">
-                <button>restart game</button>
+                <button class="reset-button">start over</button>
             </div>
         </div>
-        <div id="score-board">
-            <div id="attemps"></div>
-            <div id="correct"></div>
-            <div id="score"></div>
+        <div id="score-board" class="overlay">
+            <div class="wrapper">
+                <h3>Congrats</h3>
+                
+                <p class="call-out">You earned <span id="score"></span> points!</p>
+
+                <button class="reset-button">restart game</button>
+                
+            </div>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
